@@ -1,5 +1,4 @@
-
-# Portfolio Site
+﻿# Portfolio Site
 
 A modern, interactive portfolio website built with React, TypeScript, and Vite. Features a sleek design with animated components, project showcases, and interactive demos.
 
@@ -33,28 +32,28 @@ A modern, interactive portfolio website built with React, TypeScript, and Vite. 
 ### Installation
 
 1. Install dependencies:
-```bash
+`ash
 npm install
-```
+`
 
 2. Start the development server:
-```bash
+`ash
 npm run dev
-```
+`
 
 The application will be available at `http://localhost:5173`
 
 ### Build for Production
 
-```bash
+`ash
 npm run build
-```
+`
 
 ### Preview Production Build
 
-```bash
+`ash
 npm run preview
-```
+`
 
 ## Project Structure
 
@@ -82,4 +81,3 @@ This project is open source and available under the MIT License.
 ## Attributions
 
 See [ATTRIBUTIONS.md](src/Attributions.md) for credits and licenses of third-party libraries and assets.
-  >>>>>>> 71b4ef47da35caa24eb77adf95297be4699204b4
