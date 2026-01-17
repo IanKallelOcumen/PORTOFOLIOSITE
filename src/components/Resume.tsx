@@ -438,8 +438,8 @@ export function Resume() {
 
           <div class="education-item">
             <div class="education-title">ICT Strand - Senior High School</div>
-            <div class="education-subtitle">Biliran National High School - Laguna</div>
-            <div class="education-detail">Graduated 2022</div>
+            <div class="education-subtitle">University Of Perpetual Help System Laguna</div>
+            <div class="education-detail">Graduated 2019</div>
             <div class="education-detail">Foundation in UI design, digital animation, and technical creativity</div>
           </div>
         </div>
@@ -941,10 +941,10 @@ export function Resume() {
                         ICT Strand - Senior High School
                       </h3>
                       <p className="text-sm text-purple-600 font-medium">
-                        Biliran National High School - Laguna
+                        University Of Perpetual Help System Laguna
                       </p>
                       <p className="text-xs text-gray-600 mt-1">
-                        Graduated 2022
+                        Graduated 2019
                       </p>
                       <p className="text-xs text-gray-600 mt-1">
                         Foundation in UI design, digital
