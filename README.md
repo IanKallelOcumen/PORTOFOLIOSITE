@@ -1,11 +1,85 @@
 
-  # Code Improvement Suggestions
+# Portfolio Site
 
-  This is a code bundle for Code Improvement Suggestions. The original project is available at https://www.figma.com/design/elQq2i1Bp4QVxMZetH8iZ5/Code-Improvement-Suggestions.
+A modern, interactive portfolio website built with React, TypeScript, and Vite. Features a sleek design with animated components, project showcases, and interactive demos.
 
-  ## Running the code
+## Features
 
-  Run `npm i` to install the dependencies.
+- **Responsive Design** - Optimized for all screen sizes
+- **Interactive Components** - Smooth animations and transitions with Framer Motion
+- **Project Showcases** - Dedicated sections for featured projects and demos
+- **Dark Mode Support** - Theme switching with next-themes
+- **Accessibility** - Built with shadcn/ui components for semantic HTML and ARIA compliance
+- **Performance** - Powered by Vite for fast builds and instant HMR
 
-  Run `npm run dev` to start the development server.
+## Tech Stack
+
+- **React 18** - UI library
+- **TypeScript** - Type-safe JavaScript
+- **Vite** - Build tool and dev server
+- **Tailwind CSS** - Utility-first CSS framework
+- **Radix UI** - Headless component primitives
+- **Framer Motion** - Animation library
+- **Recharts** - Chart library for data visualization
+- **shadcn/ui** - High-quality component library
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js (v16 or higher)
+- npm or yarn
+
+### Installation
+
+1. Install dependencies:
+```bash
+npm install
+```
+
+2. Start the development server:
+```bash
+npm run dev
+```
+
+The application will be available at `http://localhost:5173`
+
+### Build for Production
+
+```bash
+npm run build
+```
+
+### Preview Production Build
+
+```bash
+npm run preview
+```
+
+## Project Structure
+
+- `src/components/` - Reusable React components
+  - `ui/` - shadcn/ui components
+  - `projects/` - Project showcase components
+  - `demos/` - Interactive demo components
+- `src/styles/` - Global styles and CSS
+- `src/assets/` - Images and static assets
+- `src/guidelines/` - Design guidelines documentation
+
+## Available Components
+
+The project includes a comprehensive set of UI components from shadcn/ui:
+- Forms and inputs
+- Navigation elements
+- Data display components
+- Dialogs and modals
+- Layout components
+
+## License
+
+This project is open source and available under the MIT License.
+
+## Attributions
+
+See [ATTRIBUTIONS.md](src/Attributions.md) for credits and licenses of third-party libraries and assets.
   
