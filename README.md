@@ -82,4 +82,4 @@ This project is open source and available under the MIT License.
 ## Attributions
 
 See [ATTRIBUTIONS.md](src/Attributions.md) for credits and licenses of third-party libraries and assets.
-  
+  >>>>>>> 71b4ef47da35caa24eb77adf95297be4699204b4
