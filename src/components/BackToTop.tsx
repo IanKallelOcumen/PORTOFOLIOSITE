@@ -7,7 +7,7 @@ export const BackToTop = memo(function BackToTop() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsVisible(window.scrollY > 300);
+      setIsVisible(window.scrollY > 100);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -25,12 +25,18 @@ export const BackToTop = memo(function BackToTop() {
     <AnimatePresence>
       {isVisible && (
         <motion.button
-          initial={{ opacity: 0, scale: 0.5, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.5, y: 20 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
           transition={{ type: 'spring', damping: 20, stiffness: 200 }}
           onClick={scrollToTop}
-          className="fixed bottom-8 right-8 z-40 w-12 h-12 bg-gradient-to-br from-[#ccff00]/20 to-[#ccff00]/10 backdrop-blur-md border border-[#ccff00]/40 rounded-full flex items-center justify-center hover:border-[#ccff00] hover:bg-gradient-to-br hover:from-[#ccff00]/30 hover:to-[#ccff00]/20 transition-all duration-300 hover:shadow-[0_0_20px_rgba(204,255,0,0.3)] group touch-manipulation min-h-[44px] min-w-[44px]"
+          style={{
+            position: 'fixed',
+            bottom: '32px',
+            right: '32px',
+            zIndex: 40,
+          }}
+          className="w-12 h-12 bg-gradient-to-br from-[#ccff00]/20 to-[#ccff00]/10 backdrop-blur-md border border-[#ccff00]/40 rounded-full flex items-center justify-center hover:border-[#ccff00] hover:bg-gradient-to-br hover:from-[#ccff00]/30 hover:to-[#ccff00]/20 transition-all duration-300 hover:shadow-[0_0_20px_rgba(204,255,0,0.3)] group touch-manipulation min-h-[44px] min-w-[44px]"
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           aria-label="Back to top"

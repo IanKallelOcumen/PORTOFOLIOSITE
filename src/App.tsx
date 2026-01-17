@@ -123,6 +123,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[#050505] text-white overflow-x-hidden touch-manipulation">
+      <BackToTop />
       {currentView === 'home' && (
         <>
           <BackgroundEffects mousePosition={mousePosition} />
@@ -147,8 +148,6 @@ export default function App() {
         
         {currentView === 'home' && <Footer />}
       </div>
-
-      <BackToTop />
     </div>
   );
 }
