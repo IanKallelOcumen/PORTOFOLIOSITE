@@ -1,9 +1,10 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, memo, useCallback } from 'react';
 import { Navigation } from './components/Navigation';
 import { BackgroundEffects } from './components/BackgroundEffects';
 import { FloatingElements } from './components/FloatingElements';
 import { Footer } from './components/Footer';
 import { HomeView } from './components/HomeView';
+import { BackToTop } from './components/BackToTop';
 import { PersonalLandingPage } from './components/projects/PersonalLandingPage';
 import { TodoApp } from './components/projects/TodoApp';
 import { WeatherDashboard } from './components/projects/WeatherDashboard';
@@ -50,10 +51,75 @@ export default function App() {
     };
   }, []);
 
-  const navigateToView = (view: View) => {
+  const navigateToView = useCallback((view: View) => {
     setCurrentView(view);
     window.scrollTo(0, 0);
-  };
+  }, []);
+
+  // Memoized view content
+  const viewContent = useCallback(() => {
+    const navigationBar = (
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 py-4 md:py-8 relative z-10">
+        <Navigation showBack={true} onBack={() => navigateToView('home')} />
+      </div>
+    );
+
+    switch (currentView) {
+      case 'home':
+        return null;
+      case 'landing':
+        return (
+          <div>
+            {navigationBar}
+            <PersonalLandingPage />
+          </div>
+        );
+      case 'todo':
+        return (
+          <div>
+            {navigationBar}
+            <TodoApp />
+          </div>
+        );
+      case 'weather':
+        return (
+          <div>
+            {navigationBar}
+            <WeatherDashboard />
+          </div>
+        );
+      case 'recipe':
+        return (
+          <div>
+            {navigationBar}
+            <RecipeApp />
+          </div>
+        );
+      case 'ecommerce':
+        return (
+          <div>
+            {navigationBar}
+            <EcommerceStore />
+          </div>
+        );
+      case 'project-board':
+        return (
+          <div>
+            {navigationBar}
+            <ProjectBoard />
+          </div>
+        );
+      case 'resume':
+        return (
+          <div>
+            {navigationBar}
+            <Resume />
+          </div>
+        );
+      default:
+        return null;
+    }
+  }, [currentView, navigateToView]);
 
   return (
     <div className="min-h-screen bg-[#050505] text-white overflow-x-hidden touch-manipulation">
@@ -76,65 +142,13 @@ export default function App() {
         {currentView === 'home' && (
           <HomeView onProjectClick={navigateToView} mousePosition={mousePosition} />
         )}
-        {currentView === 'landing' && (
-          <div>
-            <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 py-4 md:py-8 relative z-10">
-              <Navigation showBack={true} onBack={() => navigateToView('home')} />
-            </div>
-            <PersonalLandingPage />
-          </div>
-        )}
-        {currentView === 'todo' && (
-          <div>
-            <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 py-4 md:py-8 relative z-10">
-              <Navigation showBack={true} onBack={() => navigateToView('home')} />
-            </div>
-            <TodoApp />
-          </div>
-        )}
-        {currentView === 'weather' && (
-          <div>
-            <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 py-4 md:py-8 relative z-10">
-              <Navigation showBack={true} onBack={() => navigateToView('home')} />
-            </div>
-            <WeatherDashboard />
-          </div>
-        )}
-        {currentView === 'recipe' && (
-          <div>
-            <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 py-4 md:py-8 relative z-10">
-              <Navigation showBack={true} onBack={() => navigateToView('home')} />
-            </div>
-            <RecipeApp />
-          </div>
-        )}
-        {currentView === 'ecommerce' && (
-          <div>
-            <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 py-4 md:py-8 relative z-10">
-              <Navigation showBack={true} onBack={() => navigateToView('home')} />
-            </div>
-            <EcommerceStore />
-          </div>
-        )}
-        {currentView === 'project-board' && (
-          <div>
-            <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 py-4 md:py-8 relative z-10">
-              <Navigation showBack={true} onBack={() => navigateToView('home')} />
-            </div>
-            <ProjectBoard />
-          </div>
-        )}
-        {currentView === 'resume' && (
-          <div>
-            <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 py-4 md:py-8 relative z-10">
-              <Navigation showBack={true} onBack={() => navigateToView('home')} />
-            </div>
-            <Resume />
-          </div>
-        )}
+
+        {currentView !== 'home' && viewContent()}
         
         {currentView === 'home' && <Footer />}
       </div>
+
+      <BackToTop />
     </div>
   );
 }

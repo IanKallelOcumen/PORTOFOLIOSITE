@@ -1,7 +1,7 @@
 import { motion } from 'motion/react';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, memo } from 'react';
 
-export function FloatingElements() {
+export const FloatingElements = memo(function FloatingElements() {
   const [isMobile, setIsMobile] = useState(false);
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
 
@@ -77,4 +77,4 @@ export function FloatingElements() {
       ))}
     </div>
   );
-}
+});

@@ -1,5 +1,5 @@
 import { ArrowLeft, Menu, X } from 'lucide-react';
-import { useState } from 'react';
+import { useState, memo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 
 interface NavigationProps {
@@ -14,7 +14,7 @@ function scrollToSection(id: string) {
   }
 }
 
-export function Navigation({ showBack, onBack }: NavigationProps) {
+export const Navigation = memo(function Navigation({ showBack, onBack }: NavigationProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
@@ -114,4 +114,4 @@ export function Navigation({ showBack, onBack }: NavigationProps) {
       </AnimatePresence>
     </nav>
   );
-}
+});

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, memo, useCallback, useMemo } from 'react';
 import { ShoppingCart, Heart, Search, Star, Truck, Shield, CreditCard, X, Plus, Minus, Filter, Trash2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Footer } from '../Footer';
@@ -44,35 +44,35 @@ const products: Product[] = [
   },
   {
     id: 3,
-    name: 'Mechanical Keyboard RGB',
+    name: 'Wireless Aluminum Keyboard',
     price: 159,
     image: 'https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=800',
     category: 'Accessories',
     rating: 4.9,
     reviews: 412,
-    description: 'Customizable RGB mechanical keyboard with Cherry MX switches.',
+    description: 'Sleek wireless aluminum keyboard with rechargeable battery and Bluetooth connectivity.',
     inStock: true
   },
   {
     id: 4,
-    name: 'USB-C Hub Pro',
+    name: 'Mechanical Keyboard RGB',
     price: 79,
     image: 'https://images.unsplash.com/photo-1625948515291-69613efd103f?w=800',
     category: 'Accessories',
     rating: 4.5,
     reviews: 167,
-    description: '7-in-1 USB-C hub with 4K HDMI, USB 3.0, and SD card reader.',
+    description: 'Customizable RGB mechanical keyboard with Cherry MX switches.',
     inStock: true
   },
   {
     id: 5,
-    name: 'Portable SSD 1TB',
+    name: 'Internal Hard Drive 2TB',
     price: 149,
     image: 'https://images.unsplash.com/photo-1531492746076-161ca9bcad58?w=800',
     category: 'Storage',
     rating: 4.7,
     reviews: 298,
-    description: 'Ultra-fast portable SSD with read speeds up to 1050MB/s.',
+    description: '2TB internal hard drive with 7200 RPM and SATA III interface.',
     inStock: false
   },
   {
@@ -80,7 +80,7 @@ const products: Product[] = [
     name: 'Webcam 4K Ultra',
     price: 199,
     image: 'https://images.unsplash.com/photo-1614624532983-4ce03382d63d?w=800',
-    category: 'Audio',
+    category: 'Video',
     rating: 4.8,
     reviews: 134,
     description: '4K webcam with auto-focus and built-in dual microphones.',
@@ -139,18 +139,20 @@ export function EcommerceStore() {
   const cartItemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50" style={{ fontFamily: 'Sora, sans-serif' }}>
       {/* Header */}
       <header className="bg-white shadow-sm sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl"></div>
-              <h1 className="text-2xl font-bold">TechShop</h1>
+              <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center">
+                <ShoppingCart className="w-6 h-6 text-white" />
+              </div>
+              <h1 className="text-2xl font-bold text-gray-900">TechShop</h1>
             </div>
             <div className="flex items-center gap-4">
               <button className="relative p-2 hover:bg-gray-100 rounded-lg transition-colors">
-                <Heart className="w-6 h-6" />
+                <Heart className="w-6 h-6 text-gray-700" />
                 {favorites.length > 0 && (
                   <span className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">
                     {favorites.length}
@@ -161,7 +163,7 @@ export function EcommerceStore() {
                 onClick={() => setShowCart(true)}
                 className="relative p-2 hover:bg-gray-100 rounded-lg transition-colors"
               >
-                <ShoppingCart className="w-6 h-6" />
+                <ShoppingCart className="w-6 h-6 text-gray-700" />
                 {cartItemCount > 0 && (
                   <span className="absolute -top-1 -right-1 w-5 h-5 bg-blue-600 text-white text-xs rounded-full flex items-center justify-center">
                     {cartItemCount}
@@ -205,7 +207,7 @@ export function EcommerceStore() {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search products..."
-              className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 placeholder:text-gray-400"
             />
           </div>
           <div className="flex gap-2 overflow-x-auto">
@@ -291,8 +293,8 @@ export function EcommerceStore() {
                   </AnimatePresence>
                 </div>
                 <div className="p-6">
-                  <div className="text-sm text-gray-500 mb-2">{product.category}</div>
-                  <h3 className="font-bold text-lg mb-2">{product.name}</h3>
+                  <div className="text-sm text-gray-500 mb-2 font-medium">{product.category}</div>
+                  <h3 className="font-bold text-lg mb-2 text-gray-900">{product.name}</h3>
                   <p className="text-gray-600 text-sm mb-4">{product.description}</p>
                   <div className="flex items-center gap-2 mb-4">
                     <div className="flex items-center gap-1">
@@ -302,7 +304,7 @@ export function EcommerceStore() {
                     <span className="text-gray-400 text-sm">({product.reviews} reviews)</span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-2xl font-bold">${product.price}</span>
+                    <span className="text-2xl font-bold text-gray-900">${product.price}</span>
                     <motion.button
                       onClick={() => addToCart(product)}
                       disabled={!product.inStock}

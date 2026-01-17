@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, memo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 
 interface CursorEffectsProps {
@@ -20,7 +20,7 @@ interface Particle {
   life: number;
 }
 
-export function CursorEffects({ mousePosition }: CursorEffectsProps) {
+export const CursorEffects = memo(function CursorEffects({ mousePosition }: CursorEffectsProps) {
   const [ripples, setRipples] = useState<Ripple[]>([]);
   const [particles, setParticles] = useState<Particle[]>([]);
   const [trail, setTrail] = useState<{ x: number; y: number }[]>([]);
@@ -224,4 +224,4 @@ export function CursorEffects({ mousePosition }: CursorEffectsProps) {
       />
     </>
   );
-}
+});

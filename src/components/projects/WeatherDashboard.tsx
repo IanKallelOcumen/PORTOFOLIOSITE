@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, memo, useCallback, useMemo } from 'react';
 import { Search, MapPin, Cloud, Wind, Droplets, Eye, Gauge, Sun, CloudRain, CloudSnow, CloudDrizzle, Zap, Moon, Star, Heart, TrendingUp, TrendingDown, Thermometer, AlertTriangle, Clock, Sunrise, Sunset, Plus, Trash2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Footer } from '../Footer';
@@ -231,7 +231,7 @@ export function WeatherDashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900 p-6" style={{ fontFamily: 'Sora, sans-serif' }}>
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="flex items-center justify-between mb-8">

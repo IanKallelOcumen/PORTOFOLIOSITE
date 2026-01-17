@@ -1,5 +1,5 @@
 import { ArrowRight, Github, Linkedin, Mail, Code, Palette, Cpu, Wrench, Lightbulb, Target, Zap, Users, Star, ExternalLink, FileText, Trophy, Briefcase, GraduationCap, Sparkles, ChevronLeft, ChevronRight, MapPin, Award } from 'lucide-react';
-import { useState } from 'react';
+import { useState, memo, useCallback } from 'react';
 import { Card } from './Card';
 import { Tag } from './Tag';
 import { SkillMeter } from './SkillMeter';
@@ -35,9 +35,13 @@ const itemVariants = {
   }
 };
 
-export function HomeView({ onProjectClick, mousePosition }: HomeViewProps) {
+export const HomeView = memo(function HomeView({ onProjectClick, mousePosition }: HomeViewProps) {
   const [currentProjectIndex, setCurrentProjectIndex] = useState(0);
   const [activeProject, setActiveProject] = useState(0);
+
+  const handleProjectClick = useCallback((id: any) => {
+    onProjectClick(id);
+  }, [onProjectClick]);
 
   const projects = [
     {
@@ -885,7 +889,7 @@ export function HomeView({ onProjectClick, mousePosition }: HomeViewProps) {
       </motion.div>
     </motion.main>
   );
-}
+});
 
 function SocialLink({ href, icon }: { href: string; icon: React.ReactNode }) {
   return (

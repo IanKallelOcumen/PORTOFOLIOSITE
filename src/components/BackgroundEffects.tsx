@@ -1,8 +1,10 @@
+import { memo } from 'react';
+
 interface BackgroundEffectsProps {
   mousePosition: { x: number; y: number };
 }
 
-export function BackgroundEffects({ mousePosition }: BackgroundEffectsProps) {
+export const BackgroundEffects = memo(function BackgroundEffects({ mousePosition }: BackgroundEffectsProps) {
   return (
     <>
       {/* Ambient Layer */}
@@ -51,4 +53,4 @@ export function BackgroundEffects({ mousePosition }: BackgroundEffectsProps) {
       />
     </>
   );
-}
+});

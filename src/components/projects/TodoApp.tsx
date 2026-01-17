@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, memo, useCallback, useMemo } from 'react';
 import { Plus, Trash2, Check, Circle, Filter, Search, Calendar, Tag, Bell, Repeat, Moon, Sun, MoreVertical, Edit2, Clock, AlertCircle, TrendingUp } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Footer } from '../Footer';
@@ -166,7 +166,7 @@ export function TodoApp() {
   const mutedColor = darkMode ? 'text-gray-400' : 'text-gray-600';
 
   return (
-    <div className={`min-h-screen ${bgColor} transition-colors duration-300`}>
+    <div className={`min-h-screen ${bgColor} transition-colors duration-300`} style={{ fontFamily: 'Sora, sans-serif' }}>
       <div className="max-w-7xl mx-auto px-6 py-12">
         {/* Header */}
         <div className="flex items-center justify-between mb-8">

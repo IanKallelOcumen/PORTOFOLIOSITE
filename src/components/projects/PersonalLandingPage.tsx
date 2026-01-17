@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, memo, useCallback } from 'react';
 import { Github, Linkedin, Mail, ArrowRight, Star, Code, Coffee, Heart, Download, ExternalLink, ChevronDown, Award, Briefcase, Calendar, MapPin, Send } from 'lucide-react';
 import { motion, useScroll, useTransform } from 'motion/react';
 import { Footer } from '../Footer';
@@ -115,7 +115,7 @@ export function PersonalLandingPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900/20 to-gray-900 text-white overflow-x-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900/20 to-gray-900 text-white overflow-x-hidden" style={{ fontFamily: 'Sora, sans-serif' }}>
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 py-20">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(120,119,198,0.3),rgba(0,0,0,0))]"></div>
