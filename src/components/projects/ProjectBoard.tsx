@@ -19,12 +19,14 @@ const TaskCard = memo(({
   task, 
   priorityColors, 
   index, 
-  onClick 
+  onClick,
+  onDragStart
 }: { 
   task: Task; 
   priorityColors: Record<string, string>; 
   index: number; 
   onClick: () => void;
+  onDragStart: (task: Task) => void;
 }) => (
   <motion.div
     initial={{ opacity: 0, y: -20, scale: 0.9 }}
@@ -33,7 +35,9 @@ const TaskCard = memo(({
     transition={{ duration: 0.25, delay: index * 0.03 }}
     layout
     onClick={onClick}
-    className="bg-gradient-to-br from-gray-50 to-white border border-gray-200 rounded-xl p-4 cursor-pointer hover:shadow-md transition-all touch-manipulation"
+    draggable
+    onDragStart={() => onDragStart(task)}
+    className="bg-gradient-to-br from-gray-50 to-white border border-gray-200 rounded-xl p-4 cursor-grab active:cursor-grabbing hover:shadow-md transition-all touch-manipulation"
     whileHover={{ scale: 1.02, y: -2 }}
     whileTap={{ scale: 0.98 }}
   >
@@ -127,6 +131,7 @@ export function ProjectBoard() {
   const [searchQuery, setSearchQuery] = useState('');
   const [filterPriority, setFilterPriority] = useState<'all' | 'low' | 'medium' | 'high'>('all');
   const [editMode, setEditMode] = useState(false);
+  const [draggedTask, setDraggedTask] = useState<Task | null>(null);
   const [newTask, setNewTask] = useState({
     title: '',
     description: '',
@@ -195,6 +200,23 @@ export function ProjectBoard() {
     setTasks(tasks.map(task =>
       task.id === taskId ? { ...task, status: newStatus } : task
     ));
+  };
+
+  const handleDragStart = (task: Task) => {
+    setDraggedTask(task);
+  };
+
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault();
+  };
+
+  const handleDrop = (status: Task['status']) => {
+    if (draggedTask) {
+      setTasks(tasks.map(task =>
+        task.id === draggedTask.id ? { ...task, status } : task
+      ));
+      setDraggedTask(null);
+    }
   };
 
   const handleUpdateTask = () => {
@@ -291,11 +313,11 @@ export function ProjectBoard() {
               <div className="text-xs md:text-sm text-gray-700 font-semibold">To Do</div>
             </div>
             <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-3 md:p-4 rounded-xl border border-blue-300">
-              <div className="text-xl md:text-2xl font-bold text-blue-800">{stats.inProgress}</div>
+              <div className="text-xl md:text-2xl font-bold text-blue-700">{stats.inProgress}</div>
               <div className="text-xs md:text-sm text-blue-700 font-semibold">In Progress</div>
             </div>
             <div className="bg-gradient-to-br from-green-50 to-green-100 p-3 md:p-4 rounded-xl border border-green-300">
-              <div className="text-xl md:text-2xl font-bold text-green-800">{stats.done}</div>
+              <div className="text-xl md:text-2xl font-bold text-green-700">{stats.done}</div>
               <div className="text-xs md:text-sm text-green-700 font-semibold">Completed</div>
             </div>
           </div>
@@ -310,7 +332,14 @@ export function ProjectBoard() {
             const Icon = column.icon;
             
             return (
-              <div key={column.id} className="bg-white rounded-2xl p-3 md:p-4 shadow-sm">
+              <div 
+                key={column.id} 
+                className={`bg-white rounded-2xl p-3 md:p-4 shadow-sm transition-all ${
+                  draggedTask && draggedTask.status !== column.id ? 'ring-2 ring-blue-400 ring-opacity-50' : ''
+                }`}
+                onDragOver={handleDragOver}
+                onDrop={() => handleDrop(column.id as Task['status'])}
+              >
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-2 min-w-0">
                     <Icon className={`${getIconColor(column.color)} flex-shrink-0`} />
@@ -330,6 +359,7 @@ export function ProjectBoard() {
                         priorityColors={priorityColors}
                         index={index}
                         onClick={() => setSelectedTask(task)}
+                        onDragStart={handleDragStart}
                       />
                     ))}
                   </div>
