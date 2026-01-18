@@ -288,7 +288,7 @@ export function ProjectBoard() {
                 placeholder="Search tasks..."
                 className="w-full px-3 md:px-4 py-2 md:py-3 pl-10 md:pl-11 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 placeholder:text-gray-400 text-sm md:text-base"
               />
-              <Search className="absolute left-3 top-2.5 md:top-3.5 w-4 md:w-5 h-4 md:h-5 text-gray-400" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 md:w-5 h-4 md:h-5 text-gray-400" />
             </div>
             <select
               value={filterPriority}
