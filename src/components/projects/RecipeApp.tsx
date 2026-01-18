@@ -513,7 +513,7 @@ export function RecipeApp() {
                 <ChefHat className="w-5 md:w-6 h-5 md:h-6 text-white" />
               </div>
               <div className="min-w-0">
-                <h1 className="text-2xl md:text-3xl font-bold truncate">RecipeHub</h1>
+                <h1 className="text-2xl md:text-3xl font-bold truncate text-gray-900">RecipeHub</h1>
                 <p className="text-gray-600 text-xs md:text-sm">Discover delicious recipes</p>
               </div>
             </div>
