@@ -72,7 +72,7 @@ export const HomeView = memo(function HomeView({ onProjectClick, mousePosition }
       className="grid grid-cols-1 md:grid-cols-4 gap-4"
     >
       {/* Hero Section */}
-      <motion.div variants={itemVariants} className="col-span-1 md:col-span-4">
+      <motion.div id="about" variants={itemVariants} className="col-span-1 md:col-span-4">
         <Card className="relative overflow-visible" mousePosition={mousePosition}>
           <div className="flex items-center gap-2.5 mb-6">
             <Tag className="bg-[rgba(204,255,0,0.1)] text-[#ccff00] border-[#ccff00]">
@@ -123,7 +123,7 @@ export const HomeView = memo(function HomeView({ onProjectClick, mousePosition }
       </motion.div>
 
       {/* Experience */}
-      <motion.div variants={itemVariants} className="col-span-1 md:col-span-2">
+      <motion.div id="work" variants={itemVariants} className="col-span-1 md:col-span-2">
         <Card mousePosition={mousePosition}>
           <div className="flex items-center gap-2 mb-6">
             <Briefcase className="w-5 h-5 text-[#ccff00]" />
@@ -289,7 +289,7 @@ export const HomeView = memo(function HomeView({ onProjectClick, mousePosition }
       </motion.div>
 
       {/* Contact Section */}
-      <motion.div variants={itemVariants} className="col-span-1 md:col-span-4 mt-8">
+      <motion.div id="contact" variants={itemVariants} className="col-span-1 md:col-span-4 mt-8">
         <Card mousePosition={mousePosition}>
           <div className="text-center py-12">
             <h2 className="text-3xl md:text-5xl font-bold mb-6">
