@@ -306,18 +306,10 @@ export const HomeView = memo(function HomeView({ onProjectClick, mousePosition }
                 <Mail className="w-5 h-5" />
                 Get In Touch
               </a>
-              <button
-                onClick={() => onProjectClick('resume')}
-                className="w-full sm:w-auto px-8 py-4 bg-white/5 border border-white/10 text-white font-bold rounded-lg hover:border-[#ccff00] transition-all duration-300 hover:scale-105 flex items-center justify-center gap-2"
-              >
-                <FileText className="w-5 h-5" />
-                Download Resume PDF
-              </button>
               <a
-                href="https://github.com/IanKallelOcumen"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full sm:w-auto px-8 py-4 bg-white/5 border border-white/10 text-white font-bold rounded-lg hover:border-[#ccff00] transition-all duration-300 flex items-center justify-center gap-2"
+                href="/CV%20-%20Ian%20Kallel%20Ocumen.pdf"
+                download="CV - Ian Kallel Ocumen.pdf"
+                className="w-full sm:w-auto px-8 py-4 bg-white/5 border border-white/10 text-white font-bold rounded-lg hover:border-[#ccff00] transition-all duration-300 hover:scale-105 flex items-center justify-center gap-2"
               >
                 <Github className="w-5 h-5" />
                 GitHub
